@@ -1,7 +1,8 @@
--- panbbcode - BBCode writer for pandoc
--- Copyright (C) 2014 Jens Oliver John < dev ! 2ion ! de >
+-- pandoc_bbcode_smf - BBCode writer for pandoc
+-- Orig Copyright (C) 2014 Jens Oliver John < dev ! 2ion ! de >
 -- Licensed under the GNU General Public License v3 or later.
 -- Written for Lua 5.{1,2}
+-- Forked and altered for idiosyncratic SMF-flavored Code by Christopher Peterson <https://chrispeterson.info>
 
 -- PRIVATE
 
