@@ -124,7 +124,7 @@ function LineBreak()
 end
 
 function Emph(s)
-  return enclose('em', s)
+  return enclose('i', s)
 end
 
 function Strong(s)
@@ -132,11 +132,11 @@ function Strong(s)
 end
 
 function Subscript(s)
-  return string.format("{%s}", s)
+  return enclose('sup', s)
 end
 
 function Superscript(s)
-  return string.format("[%s]", s)
+  return enclose('sub', s)
 end
 
 function SmallCaps(s)
@@ -152,19 +152,33 @@ function Link(s, src, title)
 end
 
 function Image(s, src, title)
-  return enclose('img', s, src)
+  return enclose('img', src)
 end
 
-function CaptionedImage(src, attr, title)
-  if not title or title == "" then
-    return enclose('img', src)
+function CaptionedImage(src, title, caption, attr)
+  if caption and caption ~= '' then
+    return "\n" .. enclose('center',
+      enclose('table',
+        enclose('tr',
+          enclose('td',
+            enclose('img', src)
+          )
+        ) .. enclose('tr',
+          enclose('td',
+            enclose('center', caption)
+          )
+        )
+      )
+    ) .. "\n"
   else
-    return enclose('img', src, title)
+    return "\n" .. enclose('center',
+      enclose('img', src)
+    ) .. "\n"
   end
 end
 
 function Code(s, attr)
-  return string.format("[code]%s[/code]", s)
+  return enclose('tt', s)
 end
 
 function InlineMath(s)
@@ -194,9 +208,9 @@ end
 
 function Header(level, s, attr)
   if level == 1 then
-    return enclose('h', s)
+    return enclose('size', enclose('b', s), '14pt')
   elseif level == 2 then
-    return enclose('b', enclose('u', s))
+    return enclose('size', enclose('b', s), '12pt')
   else
     return enclose('b', s)
   end
@@ -220,28 +234,39 @@ function Blocksep(s)
 end
 
 function HorizontalRule(s)
-  return '--'
+  return '[hr]'
 end
 
 function CodeBlock(s, attr)
-  return enclose('code', s)
+  if attr.class and attr.class == 'ooc' then
+    return enclose('ooc', s)
+  elseif attr.class and attr.class == 'spoiler' then
+    return enclose('spoiler', s)
+  else
+    return enclose('code', s)
+  end
 end
 
 local function makelist(items, ltype)
-  local buf = string.format("[list=%s]", ltype)
+  local buf
+  if ltype == 'ordered' then
+    buf = '[list type=decimal]'
+  else
+    buf = '[list]'
+  end
   for _,e in ipairs(items) do
-    buf = buf .. enclose('*', e) .. '\n'
+    buf = buf .. enclose('li', e) .. '\n'
   end
   buf = buf .. '[/list]'
   return buf
 end
 
 function BulletList(items)
-  return makelist(items, '*')
+  return makelist(items, 'unordered')
 end
 
 function OrderedList(items)
-  return makelist(items, '1')
+  return makelist(items, 'ordered')
 end
 
 function DefinitionList(items)
