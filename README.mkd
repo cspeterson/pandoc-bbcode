@@ -11,7 +11,7 @@ The original writer itself is available on [Github][link:writer]
 following way:
 
 ```
-pandoc -t pandoc_bbcode_smf.lua _o $output $input
+pandoc -t pandoc_bbcode_smf.lua -o $output $input
 ```
 
 ## Demonstration

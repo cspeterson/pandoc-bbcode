@@ -8,7 +8,7 @@ It also adds two special tags via fenced code blocks, [tt]ooc[/tt] and [tt]spoil
 
 The original writer itself is available on [url=https://github.com/2ion/pandoc-bbcode/archive/master.tar.gz]Github[/url]([url=https://github.com/2ion/pandoc-bbcode]repository[/url]), and just as this derivative is to be used with Pandoc in thefollowing way:
 
-[code]pandoc -t pandoc_bbcode_smf.lua _o $output $input[/code]
+[code]pandoc -t pandoc_bbcode_smf.lua -o $output $input[/code]
 
 [size=12pt][b]Demonstration[/b][/size]
 
@@ -50,12 +50,12 @@ this should be hidden
 
 [b]Links and images[/b]
 
-We can now do inline links and labeled links! Now link targets can be defined in bulk at the end of the document or right at the beginning.
+We can now do inline links and labeled links! Now link targets canbe defined in bulk at the end of the document or right at the beginning(which is my personal preference).
 
 [code][This is an inline link](www.example.com)
 [This is a link the target of which is defined elsewhere][link:reference][/code]
 
-Images can be included with or without an alt text for the caption.
+Images can be included with or without an alt text.
 
 [code]![Alt text](http://i.imgur.com/B63RuQLl.jpg)[/code]
 
