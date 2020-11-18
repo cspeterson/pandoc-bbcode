@@ -1,8 +1,8 @@
-# pandoc-bbcode-smf: Write BBCode forum posts in Markdown (or anything else)
+# pandoc-bbcode-smf: Write SMF BBCode forum posts in Markdown (or anything else)
 
-## ntroduction
+## Introduction
 
-This is a fork of pandoc-bbcode made to change the flavor of BBCode to match [SMF](https://www.simplemachines.org/)
+This is a fork of [pandoc-bbcode](link:github) made to change the flavor of BBCode to match [SMF](https://www.simplemachines.org/)
 
 It also adds two special tags via fenced code blocks, `ooc` and `spoiler`.
 
